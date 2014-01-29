@@ -18,10 +18,10 @@ import com.zoyoou.dao.IDataAccess;
  * @author kaiwu
  *
  */
-public abstract class AbstractModel<E extends IEntity> implements IModel<E> {
+public abstract class AbstractModel<T extends IDataAccess<E>, E extends IEntity> implements IModel<E> {
 	
 	DataAccessType daoType = null;
-	IDataAccess<E> dao = null;
+	T dao = null;
 	Connection connection;
 	
 	protected AbstractModel(DataAccessType daoType){
@@ -29,16 +29,14 @@ public abstract class AbstractModel<E extends IEntity> implements IModel<E> {
 	}
 	
 	
-	@SuppressWarnings("unchecked")
 	protected void initDao() throws SQLException{
 		this.connection = ConnectionPool.getInstance().getConnection();
-		this.dao =  (IDataAccess<E>) DataAccessFactory.getDataAccess(this.daoType, connection);
+		this.dao =  DataAccessFactory.getDataAccess(this.daoType, connection);
 	}
 
-	@SuppressWarnings("unchecked")
 	protected void initDao(Connection connection) throws SQLException{
 		this.connection = connection;
-		this.dao =  (IDataAccess<E>) DataAccessFactory.getDataAccess(this.daoType, connection);
+		this.dao =  DataAccessFactory.getDataAccess(this.daoType, connection);
 	}
 
 	protected void closeDao() throws Exception{

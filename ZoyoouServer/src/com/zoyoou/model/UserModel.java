@@ -3,14 +3,13 @@ package com.zoyoou.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.zoyoou.common.entity.ContactInfo;
 import com.zoyoou.common.entity.User;
 import com.zoyoou.common.entity.UserCommunityRelationship;
 import com.zoyoou.dao.DataAccessType;
 import com.zoyoou.dao.UserDao;
 import com.zoyoou.resource.ErrorMessages;
 
-public class  UserModel extends AbstractModel<User>{
+public class  UserModel extends AbstractModel<UserDao,User>{
 	
 	public UserModel(){
 		super(DataAccessType.USER);
@@ -37,7 +36,7 @@ public class  UserModel extends AbstractModel<User>{
 			user = this.create(user, false);
 			
 			
-			UserCommunityModel userCommunityModle = (UserCommunityModel)ModelFactory.getModel(ModelType.USER_COMMUNITY);
+			UserCommunityModel userCommunityModle = ModelFactory.getModel(ModelType.USER_COMMUNITY);
 			userCommunityModle.initDao(this.connection);
 			UserCommunityRelationship userCommunity = user.getCommunityRelation();
 			
@@ -68,7 +67,7 @@ public class  UserModel extends AbstractModel<User>{
 		User user = new User();
 		try{
 			this.initDao();
-			user = ((UserDao)this.dao).findByUserName(username);
+			user = this.dao.findByUserName(username);
 			
 			if(null == user){
 				user = new User();

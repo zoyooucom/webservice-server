@@ -14,16 +14,17 @@ import com.zoyoou.common.entity.IEntity;
  */
 public class DataAccessFactory {
 	
-	public static IDataAccess<? extends IEntity> getDataAccess(DataAccessType type, Connection connection) throws SQLException{
+	@SuppressWarnings("unchecked")
+	public static <T extends IDataAccess<? extends IEntity>> T getDataAccess(DataAccessType type, Connection connection) throws SQLException{
 		switch(type){
 		case USER:
-			return new UserDao(connection);
+			return (T) new UserDao(connection);
 		case COMMUNITY:
 			return null;//todo
 		case CONTACTINFO:
-			return new ContactInfoDao(connection);
+			return (T) new ContactInfoDao(connection);
 		case USERCOMMUNITY:
-			return new UserCommunityDao(connection);
+			return (T) new UserCommunityDao(connection);
 		default:
 			return null;
 		}

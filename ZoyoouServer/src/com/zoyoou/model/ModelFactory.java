@@ -11,14 +11,15 @@ import com.zoyoou.common.entity.IEntity;
  */
 public class ModelFactory {
 	
-	public static IModel<? extends IEntity> getModel(ModelType type){
+	@SuppressWarnings("unchecked")
+	public static <T extends IModel<? extends IEntity> > T  getModel(ModelType type){
 		switch(type){
 		case USER:
-			return new UserModel();
+			return (T) new UserModel();
 		case CONTACTINFO:
-			return new ContactInfoModel();
+			return (T) new ContactInfoModel();
 		case USER_COMMUNITY:
-			return new UserCommunityModel();
+			return (T) new UserCommunityModel();
 		default: 
 			return null; 
 		}

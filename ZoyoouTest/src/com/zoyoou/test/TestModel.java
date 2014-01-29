@@ -14,11 +14,11 @@ public class TestModel {
 	public static void main(String[] args) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
-			User user= TestHelper.getTestUserForCreate("a28", "123456");
+			User user= TestHelper.getTestUserForCreate("30", "123456");
 			String reqStr = mapper.writeValueAsString(user);
 			System.out.println(reqStr);
 
-			UserModel userModel = (UserModel)ModelFactory.getModel(ModelType.USER);
+			UserModel userModel = ModelFactory.getModel(ModelType.USER);
 
 			
 			User createdUser = userModel.create(user);
