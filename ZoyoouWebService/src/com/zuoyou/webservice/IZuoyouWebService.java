@@ -26,7 +26,7 @@ public interface IZuoyouWebService <E extends IEntity>{
 	@GET
 	@Path("{id}")
 	@Produces({ MediaType.APPLICATION_JSON})
-	E findById(@PathParam("id") long id) throws Exception;
+	List<E> findById(@PathParam("id") long id) throws Exception;
 	
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON})
@@ -36,16 +36,16 @@ public interface IZuoyouWebService <E extends IEntity>{
 	@POST
 	@Consumes({ MediaType.APPLICATION_JSON})
 	@Produces({ MediaType.APPLICATION_JSON})
-	public E create(E entity) throws Exception;
+	public List<E> create(E entity) throws Exception;
 
 	@PUT
 	@Consumes({ MediaType.APPLICATION_JSON})
 	@Produces({ MediaType.APPLICATION_JSON})
-	public E update(E entity) throws Exception;
+	public List<E> update(E entity) throws Exception;
 
 	@DELETE
 	@Path("{id}")
 	@Produces({ MediaType.APPLICATION_JSON})
-	public E remove(@PathParam("id") long id) throws Exception;
+	public List<E> remove(@PathParam("id") long id) throws Exception;
 	
 }

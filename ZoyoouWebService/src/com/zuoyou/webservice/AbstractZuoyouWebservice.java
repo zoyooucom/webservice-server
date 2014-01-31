@@ -3,6 +3,7 @@
  */
 package com.zuoyou.webservice;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.zoyoou.common.entity.IEntity;
@@ -26,8 +27,11 @@ public abstract class AbstractZuoyouWebservice <T extends IModel<E>,E extends IE
 	 * @see com.abc.webservice.IZuoyouWebService#findById(long)
 	 */
 	@Override
-	public E findById(long id) throws Exception {
-		return model.findById(id);
+	public List<E> findById(long id) throws Exception {
+		E en = model.findById(id);
+		List<E> ens = new ArrayList<E>(1);
+		ens.add(en);
+		return ens;
 	}
 
 	/* (non-Javadoc)
@@ -42,26 +46,33 @@ public abstract class AbstractZuoyouWebservice <T extends IModel<E>,E extends IE
 	 * @see com.abc.webservice.IZuoyouWebService#create(com.zouyou.entity.IEntity)
 	 */
 	@Override
-	public E create(E entity) throws Exception {
-		return model.create(entity);
+	public List<E> create(E entity) throws Exception {
+		E en = model.create(entity);
+		List<E> ens = new ArrayList<E>(1);
+		ens.add(en);
+		return ens;
 	}
 
 	/* (non-Javadoc)
 	 * @see com.abc.webservice.IZuoyouWebService#update(com.zouyou.entity.IEntity)
 	 */
 	@Override
-	public E update(E entity) throws Exception {
-		
-		System.out.println("Update test.");
-		return model.update(entity);
+	public List<E> update(E entity) throws Exception {
+		E en = model.update(entity);
+		List<E> ens = new ArrayList<E>(1);
+		ens.add(en);
+		return ens;
 	}
 
 	/* (non-Javadoc)
 	 * @see com.abc.webservice.IZuoyouWebService#remove(long)
 	 */
 	@Override
-	public E remove(long id) throws Exception {
-		return model.remove(id);
+	public List<E> remove(long id) throws Exception {
+		E en = model.remove(id);
+		List<E> ens = new ArrayList<E>(1);
+		ens.add(en);
+		return ens;
 	}
 	
 	

@@ -20,7 +20,6 @@ public class  UserModel extends AbstractModel<UserDao,User>{
 	 * @see com.zoyoou.model.AbstractModel#create(com.zoyoou.common.entity.IEntity)
 	 */
 	@Override
-	@SuppressWarnings("finally")
 	public User create(User entity) throws Exception {
 	
 		User user = entity;
@@ -28,11 +27,6 @@ public class  UserModel extends AbstractModel<UserDao,User>{
 			this.initDao();
 			this.connection.setAutoCommit(false);
 	
-//			ContactInfoModel contactInfoModel =  (ContactInfoModel) ModelFactory.getModel(ModelType.CONTACTINFO);
-//			contactInfoModel.initDao(this.connection);
-//			ContactInfo contactInfo = contactInfoModel.create(null==user.getContactinfo()?new ContactInfo():user.getContactinfo(),false);
-//
-//			user.setContactinfo(contactInfo);
 			user = this.create(user, false);
 			
 			
@@ -40,29 +34,26 @@ public class  UserModel extends AbstractModel<UserDao,User>{
 			userCommunityModle.initDao(this.connection);
 			UserCommunityRelationship userCommunity = user.getCommunityRelation();
 			
-			User newUser = new User();
-			newUser.setUserId(user.getUserId());
-			userCommunity.setUser(newUser);
+			userCommunity.setUser(new User());
+			userCommunity.getUser().setUserId(user.getUserId());
 			userCommunity = userCommunityModle.create(userCommunity,false);
 			
 			this.connection.commit();
 			this.connection.setAutoCommit(true);
 			
-//			user.setContactinfo(contactInfo);
 			user.setCommunityRelation(userCommunity);
-			
+			return user;
 		}catch(Exception e){
 			List<String> errors = new ArrayList<String>();
 			errors.add(e.toString());
 			user.setErrorList(errors);
+			return user;
 		}finally{
 			this.closeDao();
-			return user;
 		}
 		
 	}
 	
-	@SuppressWarnings("finally")
 	public User login(String username, String password) throws Exception{
 		User user = new User();
 		try{
@@ -80,15 +71,15 @@ public class  UserModel extends AbstractModel<UserDao,User>{
 			if(!user.getPwd().equals(password)){
 				user.setErrorList(getLoginErrors());
 			}
-			
+			return user;
 		}catch(Exception e){
 			
 			List<String> errors = new ArrayList<String>();
 			errors.add(e.toString());
 			user.setErrorList(errors);
+			return user;
 		}finally{
 			this.closeDao();
-			return user;
 			
 		}
 		

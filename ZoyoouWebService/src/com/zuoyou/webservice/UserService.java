@@ -3,6 +3,9 @@
  */
 package com.zuoyou.webservice;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -29,9 +32,12 @@ public class UserService extends AbstractZuoyouWebservice<UserModel,User> {
 	@GET
 	@Path(Constants.ServicePath.LOGIN_PATH)
 	@Produces({ MediaType.APPLICATION_JSON})
-	public User login(@QueryParam(Constants.QueryParam.USERNAME) String username,
+	public List<User> login(@QueryParam(Constants.QueryParam.USERNAME) String username,
 					  @QueryParam(Constants.QueryParam.PASSWORD) String password) throws Exception{
-		return (this.model).login(username, password);
+		User user = model.login(username, password);
+		List<User> users = new ArrayList<User>(1);
+		users.add(user);
+		return users;
 	}
 
 }

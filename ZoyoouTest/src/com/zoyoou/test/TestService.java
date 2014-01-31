@@ -3,6 +3,7 @@ package com.zoyoou.test;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -13,6 +14,7 @@ import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.TypeReference;
 import org.joda.time.DateTime;
 
 import com.zoyoou.common.entity.Community;
@@ -58,59 +60,59 @@ public class TestService {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		String testUserName = "test'user6'" +203;
+		String testUserName = "Test'user6'" +220;
 		String testPassword= "123456";
 		
 		
 		
 		//create test
 		System.out.println("=======  Create Test ===========");
-		User createUser = testCreate(getTestUserForCreate(testUserName,testPassword));
+		List<User> createUser = testCreate(getTestUserForCreate(testUserName,testPassword));
 		System.out.print("*** CREATE TEST RESULT: ");
-		System.out.println(null==createUser.getErrorList()?"Created":createUser.getErrorList().get(0));
+		System.out.println(null==createUser.get(0).getErrorList()?"Created":createUser.get(0).getErrorList().get(0));
 		
-		if(null==createUser.getErrorList()){
+		if(null==createUser.get(0).getErrorList()){
 			//login test
 			System.out.println("=======  Login Test ===========");
-			User loginUser = testLogin(createUser.getUserName(),createUser.getPwd());
+			List<User> loginUser = testLogin(createUser.get(0).getUserName(),createUser.get(0).getPwd());
 			System.out.print("*** LOGIN TEST RESULT: ");
-			System.out.println(null==loginUser.getErrorList()?"Logged In":createUser.getErrorList().get(0));
+			System.out.println(null==loginUser.get(0).getErrorList()?"Logged In":createUser.get(0).getErrorList().get(0));
 			
 			//find by user id test
 			System.out.println("=======  FindById Test ===========");
-			User findByIdUser = testFindById(createUser.getUserId());
+			List<User> findByIdUser = testFindById(createUser.get(0).getUserId());
 			System.out.print("*** FIND BY ID TEST RESULT: ");
-			System.out.println(null==findByIdUser.getErrorList()?"User Found by ID": findByIdUser.getErrorList().get(0));
+			System.out.println(null==findByIdUser.get(0).getErrorList()?"User Found by ID": findByIdUser.get(0).getErrorList().get(0));
 
-			if(null == findByIdUser.getErrorList()){
+			if(null == findByIdUser.get(0).getErrorList()){
 				//update test
 				System.out.println("=======  Update Test ===========");
-				User updatedUser = testUpdate(getTestUserForUpdate(findByIdUser));
+				List<User> updatedUser = testUpdate(getTestUserForUpdate(findByIdUser.get(0)));
 				System.out.print("*** UPDATE TEST RESULT: ");
-				System.out.println(null==updatedUser.getErrorList()
-						?	"Updated " +updatedUser.getContactinfo().getAddress1()
-						:   updatedUser.getErrorList().get(0));
+				System.out.println(null==updatedUser.get(0).getErrorList()
+						?	"Updated " +updatedUser.get(0).getContactinfo().getAddress1()
+						:   updatedUser.get(0).getErrorList().get(0));
 			}
 
 			
 			//delete test
 			System.out.println("=======  Delete Test ===========");
-			User deleteUser = testDelete(createUser.getUserId());
+			List<User> deleteUser = testDelete(createUser.get(0).getUserId());
 			System.out.print("*** DELETE TEST RESULT 1: ");
-			System.out.println(null == deleteUser.getErrorList()?"Deleted":deleteUser.getErrorList().get(0));
-			if(null==deleteUser.getErrorList()){
-				findByIdUser = testFindById(createUser.getUserId());
+			System.out.println(null == deleteUser.get(0).getErrorList()?"Deleted":deleteUser.get(0).getErrorList().get(0));
+			if(null==deleteUser.get(0).getErrorList()){
+				findByIdUser = testFindById(createUser.get(0).getUserId());
 				System.out.print("*** DELETE TEST RESULT 2 (CEHCK ACTIVE STATUS): ");
-				System.out.println(null ==findByIdUser.getErrorList()
-						? "Deleted user found. Active Status is  " + findByIdUser.getActiveStatus().getActiveId()
-						: findByIdUser.getErrorList().get(0));
+				System.out.println(null ==findByIdUser.get(0).getErrorList()
+						? "Deleted user found. Active Status is  " + findByIdUser.get(0).getActiveStatus().getActiveId()
+						: findByIdUser.get(0).getErrorList().get(0));
 				
 			}
 		}
 
 	}
 	
-	private static User testDelete(long userid) throws Exception{
+	private static List<User> testDelete(long userid) throws Exception{
 		HttpClient  httpClient = new DefaultHttpClient();
 		String uri = getUri("ZoyoouWebService/userservice/" +userid);
 		
@@ -125,7 +127,7 @@ public class TestService {
 	}
 
 	
-	private static User testUpdate(User user) throws Exception{
+	private static List<User> testUpdate(User user) throws Exception{
 		HttpClient  httpClient = new DefaultHttpClient();
 		String uri = getUri("ZoyoouWebService/userservice");
 		System.out.println("URI: " + uri);
@@ -149,7 +151,7 @@ public class TestService {
 		return String.format("http://%s:%d/%s", HOST, PORT, service);
 	}
 	
-	private static User testCreate(User user) throws Exception{
+	private static List<User> testCreate(User user) throws Exception{
 		HttpClient  httpClient = new DefaultHttpClient();
 		String uri = getUri("ZoyoouWebService/userservice");
 		System.out.println("URI: " + uri);
@@ -168,7 +170,7 @@ public class TestService {
 		HttpResponse httpResponse = httpClient.execute(post);
 		return displayResponse(httpResponse);
 	}
-	private static User testLogin(String username, String password) throws Exception{
+	private static List<User> testLogin(String username, String password) throws Exception{
 		HttpClient  httpClient = new DefaultHttpClient();
 		String uri = getUri("ZoyoouWebService/userservice/login/"+"?username="+username+"&password="+password);
 		System.out.println("URI: " + uri);
@@ -179,7 +181,7 @@ public class TestService {
 	}
 	
 	
-	private static User testFindById(long uid) throws Exception{
+	private static List<User> testFindById(long uid) throws Exception{
 		HttpClient  httpClient = new DefaultHttpClient();		
 		
 		String uri = getUri("ZoyoouWebService/userservice/" +uid);
@@ -191,12 +193,12 @@ public class TestService {
 	}
 	
 	
-	private static User displayResponse(HttpResponse response) throws Exception{
+	private static List<User> displayResponse(HttpResponse response) throws Exception{
 		String respStr = formatResponseString(response);
 		System.out.println("Resposne JSON: " + respStr);
 		ObjectMapper om = new ObjectMapper();
-		
-		User u = om.readValue(respStr, User.class);
+		List<User> u = om.readValue(respStr,new TypeReference<List<User>>() {
+		});
 //		if(u.getErrorList()==null)
 //			System.out.println(u.getUserId() + "  " + u.getUserName() );//+"  " + u.getActiveStatus().getActiveId());
 //		else{

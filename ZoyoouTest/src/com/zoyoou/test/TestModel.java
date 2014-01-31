@@ -14,33 +14,31 @@ public class TestModel {
 	public static void main(String[] args) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
-			User user= TestHelper.getTestUserForCreate("30", "123456");
-			String reqStr = mapper.writeValueAsString(user);
-			System.out.println(reqStr);
-
+//			User user= TestHelper.getTestUserForCreate("a39", "123456");
+//			String reqStr = mapper.writeValueAsString(user);
+//			System.out.println(reqStr);
+//
 			UserModel userModel = ModelFactory.getModel(ModelType.USER);
-
-			
-			User createdUser = userModel.create(user);
-			reqStr = mapper.writeValueAsString(createdUser);
-			System.out.println(reqStr);
+//
+//			
+//			User createdUser = userModel.create(user);
+//			reqStr = mapper.writeValueAsString(createdUser);
+//			System.out.println(reqStr);
 		
-			user = userModel.findById(createdUser.getUserId());
+			User user = userModel.findById(88);//createdUser.getUserId());
 			
-		    reqStr = mapper.writeValueAsString(user);
+		    String reqStr = mapper.writeValueAsString(user);
 			System.out.println(reqStr);
 
-//			long cid = user.getContactinfo().getContactID()-1;
-//			user.getContactinfo().setContactID(cid);
-			User updateUser = TestHelper.getTestUserForUpdate(user);
-			user = userModel.update(updateUser);
-			
-		    reqStr = mapper.writeValueAsString(user);
-			System.out.println(reqStr);
-	
-			
-			
-	
+//			User updateUser = TestHelper.getTestUserForUpdate(user);
+//			user = userModel.update(updateUser);
+//			
+//		    reqStr = mapper.writeValueAsString(user);
+//			System.out.println(reqStr);
+//	
+//			
+//			
+//	
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
