@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.zuoyou.webservice;
+package com.zoyoou.webservice;
 
 import java.util.List;
 

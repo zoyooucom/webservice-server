@@ -60,7 +60,7 @@ public class TestService {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		String testUserName = "Test'user6'" +220;
+		String testUserName = "Test'user6'" +226;
 		String testPassword= "123456";
 		
 		

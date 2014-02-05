@@ -5,6 +5,10 @@ package com.zoyoou.common.entity;
 
 import java.util.List;
 
+
+
+
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.joda.time.DateTime;
 
 /**
@@ -23,6 +27,7 @@ public abstract class AbstractEntity implements IEntity {
 	 * @see com.zouyou.entity.IEntity#getCreateDate()
 	 */
 	@Override
+	@JsonIgnore
 	public DateTime getCreateDate() {
 		return createDate;
 	}
@@ -39,6 +44,7 @@ public abstract class AbstractEntity implements IEntity {
 	 * @see com.zouyou.entity.IEntity#getCreateBy()
 	 */
 	@Override
+	@JsonIgnore
 	public String getCreateBy() {
 		return createBy;
 	}
@@ -55,6 +61,7 @@ public abstract class AbstractEntity implements IEntity {
 	 * @see com.zouyou.entity.IEntity#getLastModifiedDate()
 	 */
 	@Override
+	@JsonIgnore
 	public DateTime getLastModifiedDate() {
 		return lastModifiedDate;
 	}
@@ -71,6 +78,7 @@ public abstract class AbstractEntity implements IEntity {
 	 * @see com.zouyou.entity.IEntity#getLastModifiedBy()
 	 */
 	@Override
+	@JsonIgnore
 	public String getLastModifiedBy() {
 		return lastModifiedBy;
 	}

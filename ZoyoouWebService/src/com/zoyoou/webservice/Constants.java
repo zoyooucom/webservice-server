@@ -1,4 +1,4 @@
-package com.zuoyou.webservice;
+package com.zoyoou.webservice;
 
 public class Constants {
 	public static class ServicePath{
