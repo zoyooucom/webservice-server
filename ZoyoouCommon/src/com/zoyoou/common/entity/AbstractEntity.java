@@ -8,13 +8,22 @@ import java.util.List;
 
 
 
+
+
+
+
+
+
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.joda.time.DateTime;
+
 
 /**
  * @author kaiwu
  *
  */
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL )
 public abstract class AbstractEntity implements IEntity {
 	private List<String> errorList;
     private DateTime createDate;
