@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="/Users/kaiwu/Documents/workspace/ZoyoouCommon/lib/joda-time-2.1.jar">
+	<classpathentry kind="lib" path="/Users/hawang/Documents/workspace/webservice-server/ZoyoouCommon/lib/joda-time-2.1.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>

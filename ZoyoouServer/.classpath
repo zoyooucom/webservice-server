@@ -7,22 +7,22 @@
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/kaiwu/Documents/workspace/ZoyoouServer/lib/commons-dbcp-1.4.jar">
+	<classpathentry kind="lib" path="/Users/hawang/Documents/workspace/webservice-server/ZoyoouServer/lib/commons-dbcp-1.4.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/kaiwu/Documents/workspace/ZoyoouServer/lib/commons-pool-1.6.jar">
+	<classpathentry kind="lib" path="/Users/hawang/Documents/workspace/webservice-server/ZoyoouServer/lib/commons-pool-1.6.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/kaiwu/Documents/workspace/ZoyoouServer/lib/joda-time-2.1.jar">
+	<classpathentry kind="lib" path="/Users/hawang/Documents/workspace/webservice-server/ZoyoouServer/lib/joda-time-2.1.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/kaiwu/Documents/workspace/ZoyoouServer/lib/mysql-connector-java-5.1.28-bin.jar">
+	<classpathentry kind="lib" path="/Users/hawang/Documents/workspace/webservice-server/ZoyoouServer/lib/mysql-connector-java-5.1.28-bin.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>
