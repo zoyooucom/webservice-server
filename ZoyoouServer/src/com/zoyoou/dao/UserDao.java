@@ -11,8 +11,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+
 import com.zoyoou.common.entity.ActiveStatus;
 import com.zoyoou.common.entity.ContactInfo;
+import com.zoyoou.common.entity.Gender;
 import com.zoyoou.common.entity.User;
 import com.zoyoou.resource.ErrorMessages;
 
@@ -32,6 +36,8 @@ public class UserDao extends AbstractDataAccess<User> {
 	static final String PASSWORD= "Pwd";
 	static final String STATUS = "ActiveStatus";
 	static final String NICKNAME="NickName";
+	static final String GENDER = "Gender";
+	static final String DOB = "DOB";
 	
 	
 	static final String FIND_BY_ID="{call GetUserInfo(?)}";
@@ -134,6 +140,13 @@ public class UserDao extends AbstractDataAccess<User> {
 		user.setActiveStatus(status);
 		if(!forLogin){
 			user.setNickName(result.getString(NICKNAME));
+			Date dobInDate = result.getDate(DOB);
+			DateTime dob = null == dobInDate?null: LocalDate.fromDateFields(dobInDate).toDateTimeAtStartOfDay();
+			user.setDob(dob);
+			
+			Gender gender = new Gender();
+			gender.setId(result.getShort(GENDER));
+			user.setGender(gender);
 			
 			ContactInfo contactInfo = new ContactInfo();
 			contactInfo.setContactID(result.getLong(ContactInfoDao.CONTACT_ID));
@@ -149,6 +162,10 @@ public class UserDao extends AbstractDataAccess<User> {
 			contactInfo.setCellPhone(result.getString(ContactInfoDao.CELLPHONE));
 			user.setContactinfo(contactInfo);
 		}
+		
+		
+	
+	
 		return user;
 	}
 	
@@ -167,7 +184,7 @@ public class UserDao extends AbstractDataAccess<User> {
 		csUser.setString(3,user.getPwd());
 		csUser.setShort(4, user.getActiveStatus().getActiveId());
 		csUser.setString(5, user.getNickName());
-		csUser.setBoolean(6, user.isGender());
+		csUser.setShort(6, user.getGender().getId());
 		csUser.setDate(7, new Date(user.getDob().getMillis()));
 		csUser.setString(8,  user.getContactinfo().getAddress1());
 		csUser.setString(9,  user.getContactinfo().getAddress2());

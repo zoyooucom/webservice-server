@@ -18,6 +18,7 @@ import org.codehaus.jackson.type.TypeReference;
 import org.joda.time.DateTime;
 
 import com.zoyoou.common.entity.Community;
+import com.zoyoou.common.entity.Gender;
 import com.zoyoou.common.entity.Role;
 import com.zoyoou.common.entity.User;
 import com.zoyoou.common.entity.UserCommunityRelationship;
@@ -32,7 +33,9 @@ public class TestService {
 	private static User getTestUserForUpdate(User u){
 		User user = u;
 		user.setNickName("NicknameforUser");
-		user.setGender(true);
+		Gender gender = new Gender();
+		gender.setId((short)1);
+		user.setGender(gender);
 		user.setDob(DateTime.now().plusWeeks(1040));
 		user.getContactinfo().setAddress1("123 Main Street");
 		user.getContactinfo().setAddress2(" Unit 23");
@@ -62,7 +65,7 @@ public class TestService {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		String testUserName = "Test'user6'" +232;
+		String testUserName = "Test'user'" +6;
 		String testPassword= "123456";
 		
 	
