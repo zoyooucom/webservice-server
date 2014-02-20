@@ -15,7 +15,7 @@ public class User extends AbstractEntity {
 	private String userName;
 	private String nickName;
 	private String pwd;
-	private Gender gender;
+	private boolean gender;
 	private DateTime dob;
 	private ContactInfo contactinfo;
 	private ActiveStatus activeStatus;
@@ -71,13 +71,13 @@ public class User extends AbstractEntity {
 	/**
 	 * @return the gender
 	 */
-	public Gender getGender() {
+	public boolean isGender() {
 		return gender;
 	}
 	/**
 	 * @param gender the gender to set
 	 */
-	public void setGender(Gender gender) {
+	public void setGender(boolean gender) {
 		this.gender = gender;
 	}
 	/**

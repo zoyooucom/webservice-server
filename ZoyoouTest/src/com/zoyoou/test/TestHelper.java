@@ -9,7 +9,6 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.joda.time.DateTime;
 
 import com.zoyoou.common.entity.Community;
-import com.zoyoou.common.entity.Gender;
 import com.zoyoou.common.entity.Role;
 import com.zoyoou.common.entity.User;
 import com.zoyoou.common.entity.UserCommunityRelationship;
@@ -19,9 +18,7 @@ public class TestHelper {
 	public static User getTestUserForUpdate(User u){
 		User user = u;
 		user.setNickName("NicknameforUser");
-		Gender gender = new Gender();
-		gender.setId((short)1);
-		user.setGender(gender);
+		user.setGender(true);
 		user.setDob(DateTime.now().plusWeeks(1040));
 		user.getContactinfo().setAddress1("123 Main Street");
 		user.getContactinfo().setAddress2(" Unit 23");
@@ -35,7 +32,7 @@ public class TestHelper {
 
 		
 	}
-
+	
 	public static User getTestUserForCreate(String username, String password){
 		User user = new User();
 		user.setUserName(username);
