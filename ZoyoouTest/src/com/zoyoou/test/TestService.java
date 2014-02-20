@@ -58,7 +58,7 @@ public class TestService {
 	}
 
 	public static void main(String[] args) throws Exception {
-		String testUserName = "Test'user6'" + 239;
+		String testUserName = "Test'user6'" + 243;
 		String testPassword = "123456";
 		// create test
 		System.out.println("=======  Create Test ===========");
