@@ -11,7 +11,8 @@ public enum DataAccessType {
 	USER(1),
 	CONTACTINFO(2),
 	COMMUNITY(3),
-	USERCOMMUNITY(4);
+	USERCOMMUNITY(4),
+	MAP(5);
 	
 	
 	public final int Value;

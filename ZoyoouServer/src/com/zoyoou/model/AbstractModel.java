@@ -127,9 +127,7 @@ public abstract class AbstractModel<T extends IDataAccess<E>, E extends IEntity>
 				
 			}			
 		}else 
-			return this.dao.create(entity);
-		
-	}
+			return this.dao.create(entity);	}
 
 
 	/* (non-Javadoc)

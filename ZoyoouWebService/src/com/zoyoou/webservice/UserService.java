@@ -37,6 +37,7 @@ public class UserService extends AbstractZuoyouWebservice<UserModel,User> {
 		User user = model.login(username, password);
 		List<User> users = new ArrayList<User>(1);
 		users.add(user);
+
 		return users;
 	}
 

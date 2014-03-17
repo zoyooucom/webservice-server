@@ -20,11 +20,13 @@ public class DataAccessFactory {
 		case USER:
 			return (T) new UserDao(connection);
 		case COMMUNITY:
-			return null;//todo
+			return (T) new CommunityDao(connection);
 		case CONTACTINFO:
 			return (T) new ContactInfoDao(connection);
 		case USERCOMMUNITY:
 			return (T) new UserCommunityDao(connection);
+		case MAP:
+			return (T) new MapDao(connection);
 		default:
 			return null;
 		}

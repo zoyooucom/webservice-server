@@ -20,6 +20,10 @@ public class ModelFactory {
 			return (T) new ContactInfoModel();
 		case USER_COMMUNITY:
 			return (T) new UserCommunityModel();
+		case COMMUNITY:
+			return (T) new CommunityModel();
+		case MAP:
+			return (T) new MapModel();
 		default: 
 			return null; 
 		}

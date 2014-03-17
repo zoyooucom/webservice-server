@@ -10,7 +10,9 @@ package com.zoyoou.model;
 public enum ModelType {
 	USER(1),
 	CONTACTINFO(2),
-	USER_COMMUNITY(3);
+	USER_COMMUNITY(3),
+	COMMUNITY(4),
+	MAP(5);
 	
 	public  final int Value;
 	private ModelType(int value){

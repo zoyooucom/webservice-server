@@ -31,6 +31,8 @@ public abstract class AbstractZuoyouWebservice <T extends IModel<E>,E extends IE
 		E en = model.findById(id);
 		List<E> ens = new ArrayList<E>(1);
 		ens.add(en);
+		
+		
 		return ens;
 	}
 

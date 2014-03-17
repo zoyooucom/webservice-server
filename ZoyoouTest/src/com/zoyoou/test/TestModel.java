@@ -15,7 +15,7 @@ public class TestModel {
 	public static void main(String[] args) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
-			User user= TestHelper.getTestUserForCreate("a40", "123456");
+			User user= TestHelper.getTestUserForCreate("a58", "123456");
 			String reqStr = mapper.writeValueAsString(user);
 			System.out.println(reqStr);
 

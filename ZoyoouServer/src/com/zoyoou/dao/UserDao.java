@@ -128,7 +128,7 @@ public class UserDao extends AbstractDataAccess<User> {
 	}
 	
 	
-	private static User getUserFromResult(ResultSet result, boolean forLogin) throws SQLException{
+	static User getUserFromResult(ResultSet result, boolean forLogin) throws SQLException{
 		User user = new User();
 		user.setUserId(result.getLong(UID));
 		user.setUserName(result.getString(USERNAME));
